@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>成績預估排名系統</title>
+  <style>
+    body {
+      background-color: #f9f5f0;
+      font-family: Arial, sans-serif;
+      color: #3e2f28;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      color: #6b4c3b;
+    }
+    select, button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #c7b7a3;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      background-color: #e5cfc0;
+    }
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .form-group select {
+      width: 180px;
+    }
+    #info {
+      margin: 20px 0;
+      font-size: 16px;
+      text-align: center;
+      color: #5e5147;
+    }
+    .card {
+      background-color: #fff8f3;
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      line-height: 2.2; 
+      font-size: 18px;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #7d7d7d;
+      text-align: center;
+    }
+    .button-link {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #d8b4a0;
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 8px;
+      margin: 15px 5px;
+      transition: transform 0.3s;
+      font-size: 16px;
+    }
+    .button-link:hover {
+      transform: scale(1.05);
+      background-color: #c49a88;
+    }
+    .image-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .image-group img {
+      width: 45%;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    @media (max-width: 600px) {
+      .form-group select {
+        width: 90%;
+        margin: 10px 0;
+      }
+      .image-group img {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="big-title">114國中教育會考</div>
+
+  <h1>成績預估排名系統</h1>
+
+  <select id="region">
+    <option value="">請選擇考區</option>
+    <option value="21311">臺北考區</option>
+    <option value="29825">新北考區</option>
+    <option value="3561">宜蘭考區</option>
+    <option value="2392">基隆考區</option>
+    <option value="18474">桃園考區</option>
+    <option value="14022">竹苗考區</option>
+    <option value="29181">中投考區</option>
+    <option value="9041">彰化考區</option>
+    <option value="4953">雲林考區</option>
+    <option value="5169">嘉義考區</option>
+    <option value="13373">臺南考區</option>
+    <option value="5102">屏東考區</option>
+    <option value="18796">高雄考區</option>
+    <option value="2400">花蓮考區</option>
+    <option value="1472">臺東考區</option>
+    <option value="524">澎湖考區</option>
+    <option value="589">金門考區</option>
+    <option value="80">馬祖考區</option>
+  </select>
+
+  <div id="info">
+    會考成績公布了～看看自己的考區排名，幫助你更快找到適合的學校！<br>
+    只要輸入自己的考區和成績就可以囉！
+  </div>
+
+  <div class="form-item">
+    <label for="chinese">國文</label> 
+    <select id="chinese">
+      <option value="">選擇成績</option>
+      <option value="A">A++</option><option value="A">A+</option><option value="A">A</option>
+      <option value="B">B++</option><option value="B">B+</option><option value="B">B</option>
+      <option value="C">C++</option><option value="C">C+</option><option value="C">C</option>
+    </select>
+    <label for="chinese">數學</label> 
+    <select id="math">
+      <option value="">選擇成績</option>
+      <option value="A">A++</option><option value="A">A+</option><option value="A">A</option>
+      <option value="B">B++</option><option value="B">B+</option><option value="B">B</option>
+      <option value="C">C++</option><option value="C">C+</option><option value="C">C</option>
+    </select>
+    <label for="chinese">英文</label>
+    <select id="english">
+      <option value="">選擇成績</option>
+      <option value="A">A++</option><option value="A">A+</option><option value="A">A</option>
+      <option value="B">B++</option><option value="B">B+</option><option value="B">B</option>
+      <option value="C">C++</option><option value="C">C+</option><option value="C">C</option>
+    </select>
+    <label for="chinese">理化</label>
+    <select id="science">
+      <option value="">選擇成績</option>
+      <option value="A">A++</option><option value="A">A+</option><option value="A">A</option>
+      <option value="B">B++</option><option value="B">B+</option><option value="B">B</option>
+      <option value="C">C++</option><option value="C">C+</option><option value="C">C</option>
+    </select>
+    <label for="chinese">社會</label>
+    <select id="social">
+      <option value="">選擇成績</option>
+      <option value="A">A++</option><option value="A">A+</option><option value="A">A</option>
+      <option value="B">B++</option><option value="B">B+</option><option value="B">B</option>
+      <option value="C">C++</option><option value="C">C+</option><option value="C">C</option>
+    </select>
+  </div>
+
+  <button onclick="calculateRank()">計算排名</button>
+
+  <div class="card" id="result" style="display:none;">
+    <div id="grade"></div>
+    <div id="selectedRegion"></div>
+    <div id="ranking"></div>
+    <div id="percentRange"></div>
+  </div>
+
+  <div class="footer">
+    排名依照大考中心公布之各級人數百分比統計表預估，僅供參考
+  </div>
+
+  <a class="button-link" href="https://lin.ee/eVIPVuL" target="_blank">
+    完整落點分析/課程諮詢
+  </a>
+
+  <div class="image-group">
+    <img src="https://i.postimg.cc/yNtsgQRz/S-251994164.png" alt="圖1">
+    <img src="https://i.postimg.cc/WzQ50Znz/S-251994166.jpg" alt="圖2">
+  </div>
+
+  <a class="button-link" href="https://sites.google.com/view/prerequisites2025/%E9%A6%96%E9%A0%81" target="_blank">
+    高一先修課程資訊/報名
+  </a>
+
+  <script>
+    const scoreData = [
+      { grade: "5A0B0C", percent: 9.59 },
+      { grade: "4A1B0C", percent: 5.54 },
+      { grade: "4A0B1C", percent: 0.01 },
+      { grade: "3A2B0C", percent: 5.75 },
+      { grade: "3A1B1C", percent: 0.04 },
+      { grade: "3A0B2C", percent: 0.00 },
+      { grade: "2A3B0C", percent: 7.09 },
+      { grade: "2A2B1C", percent: 0.18 },
+      { grade: "2A1B2C", percent: 0.00 },
+      { grade: "2A0B3C", percent: 0.00 },
+      { grade: "1A4B0C", percent: 11.32 },
+      { grade: "1A3B1C", percent: 1.14 },
+      { grade: "1A2B2C", percent: 0.17 },
+      { grade: "1A1B3C", percent: 0.05 },
+      { grade: "1A0B4C", percent: 0.05 },
+      { grade: "0A5B0C", percent: 22.31 },
+      { grade: "0A4B1C", percent: 11.32 },
+      { grade: "0A3B2C", percent: 8.11 },
+      { grade: "0A2B3C", percent: 6.22 },
+      { grade: "0A1B4C", percent: 5.19 },
+      { grade: "0A0B5C", percent: 5.80 },
+    ];
+
+    function calculateRank() {
+      const region = document.getElementById("region").value;
+      const regionText = document.getElementById("region").options[document.getElementById("region").selectedIndex].text;
+      const scores = [
+        document.getElementById("chinese").value,
+        document.getElementById("math").value,
+        document.getElementById("english").value,
+        document.getElementById("science").value,
+        document.getElementById("social").value
+      ];
+
+      if (!region || scores.includes("")) {
+        alert("請選擇考區並填寫所有科目成績！");
+        return;
+      }
+
+      const A = scores.filter(s => s === 'A').length;
+      const B = scores.filter(s => s === 'B').length;
+      const C = scores.filter(s => s === 'C').length;
+      const gradeCombo = `${A}A${B}B${C}C`;
+
+      let cumulative = 0;
+      for (let data of scoreData) {
+        if (data.grade === gradeCombo) {
+          const startPercent = cumulative;
+          const endPercent = cumulative + data.percent;
+          const startRank = Math.floor(region * startPercent / 100) + 1;
+          const endRank = Math.floor(region * endPercent / 100);
+          document.getElementById("grade").innerText = `成績組合：${gradeCombo}`;
+          document.getElementById("selectedRegion").innerText = `考區：${regionText}`;
+          document.getElementById("ranking").innerText = `預估名次範圍：第 ${startRank} 名 ～ 第 ${endRank} 名`;
+          document.getElementById("percentRange").innerText = `預估百分比範圍：${startPercent.toFixed(2)}% ~ ${endPercent.toFixed(2)}%`;
+          document.getElementById("result").style.display = "block";
+          return;
+        }
+        cumulative += data.percent;
+      }
+
+      document.getElementById("grade").innerText = `成績組合：${gradeCombo}`;
+      document.getElementById("selectedRegion").innerText = `考區：${regionText}`;
+      document.getElementById("ranking").innerText = `查無資料，可能無人考到此組合`;
+      document.getElementById("percentRange").innerText = "";
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>

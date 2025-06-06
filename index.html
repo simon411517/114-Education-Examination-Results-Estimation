@@ -115,7 +115,10 @@
   </style>
 </head>
 <body>
-  <h1>114國中教育會考</h1>
+  <div class="big-title">114國中教育會考</div>
+
+  <h1>成績預估排名系統</h1>
+
 
   <select id="region">
     <option value="">請選擇考區</option>
@@ -206,7 +209,7 @@
   </div>
 
   <a class="button-link" href="https://lin.ee/eVIPVuL" target="_blank">
-    完整落點分析/課程諮詢<br>高一先修課程資訊/報名
+    完整落點分析/課程諮詢
   </a>
 
   <div class="image-group">
@@ -219,7 +222,75 @@
   </a>
 
 <script>
-  // 這裡是計算邏輯，跟之前一樣正確累積百分比，會放上來
+  const scoreData = [
+     { grade: "5A0B0C", percent: 9.59 },
+      { grade: "4A1B0C", percent: 5.54 },
+      { grade: "4A0B1C", percent: 0.01 },
+      { grade: "3A2B0C", percent: 5.75 },
+      { grade: "3A1B1C", percent: 0.04 },
+      { grade: "3A0B2C", percent: 0.00 },
+      { grade: "2A3B0C", percent: 7.09 },
+      { grade: "2A2B1C", percent: 0.18 },
+      { grade: "2A1B2C", percent: 0.00 },
+      { grade: "2A0B3C", percent: 0.00 },
+      { grade: "1A4B0C", percent: 11.32 },
+      { grade: "1A3B1C", percent: 1.14 },
+      { grade: "1A2B2C", percent: 0.17 },
+      { grade: "1A1B3C", percent: 0.05 },
+      { grade: "1A0B4C", percent: 0.05 },
+      { grade: "0A5B0C", percent: 22.31 },
+      { grade: "0A4B1C", percent: 11.32 },
+      { grade: "0A3B2C", percent: 8.11 },
+      { grade: "0A2B3C", percent: 6.22 },
+      { grade: "0A1B4C", percent: 5.19 },
+      { grade: "0A0B5C", percent: 5.80 },
+    ];
+
+
+  function calculateRank() {
+    const region = document.getElementById("region").value;
+    const regionText = document.getElementById("region").options[document.getElementById("region").selectedIndex].text;
+    const scores = [
+      document.getElementById("chinese").value,
+      document.getElementById("math").value,
+      document.getElementById("english").value,
+      document.getElementById("science").value,
+      document.getElementById("social").value
+    ];
+
+    if (!region || scores.includes("")) {
+      alert("請選擇考區並填寫所有科目成績！");
+      return;
+    }
+
+    const A = scores.filter(s => s === 'A').length;
+    const B = scores.filter(s => s === 'B').length;
+    const C = scores.filter(s => s === 'C').length;
+    const gradeCombo = `${A}A${B}B${C}C`;
+
+    let cumulative = 0;
+    for (let data of scoreData) {
+      if (data.grade === gradeCombo) {
+        const startPercent = cumulative;
+        const endPercent = cumulative + data.percent;
+        const startRank = Math.floor(region * startPercent / 100) + 1;
+        const endRank = Math.floor(region * endPercent / 100);
+        document.getElementById("grade").innerText = `成績組合：${gradeCombo}`;
+        document.getElementById("selectedRegion").innerText = `考區：${regionText}`;
+        document.getElementById("ranking").innerText = `預估名次範圍：第 ${startRank} 名 ～ 第 ${endRank} 名`;
+        document.getElementById("percentRange").innerText = `預估百分比範圍：${startPercent.toFixed(2)}% ~ ${endPercent.toFixed(2)}%`;
+        document.getElementById("result").style.display = "block";
+        return;
+      }
+      cumulative += data.percent;
+    }
+
+    document.getElementById("grade").innerText = `成績組合：${gradeCombo}`;
+    document.getElementById("selectedRegion").innerText = `考區：${regionText}`;
+    document.getElementById("ranking").innerText = `查無資料，可能無人考到此組合`;
+    document.getElementById("percentRange").innerText = "";
+    document.getElementById("result").style.display = "block";
+  }
 </script>
 
 </body>
